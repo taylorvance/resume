@@ -7,9 +7,15 @@ TAG := pandoc/latex:3.7.0-ubuntu
 .PHONY: setup teardown
 setup: ## Install the docker image.
 	docker pull $(TAG)
+teardown: ## Delete pandoc-generated files and show how to uninstall the docker image.
+	@echo "Removing pandoc-generated files..."
+	@rm -f ${PWD}/output/resume.html ${PWD}/output/resume.pdf ${PWD}/output/resume.txt
+	@echo "Done."
+	@echo "To uninstall the docker image, run 'docker rmi $(TAG)'"
 
-.PHONY: html pdf
-html: ## Convert the markdown file to HTML.
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/resume.html /data/resume.md
-pdf: ## Convert the markdown file to PDF.
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/resume.pdf /data/resume.md -V geometry:margin=1in -V fontsize=12pt
+.PHONY: start
+start: ## Convert markdown resume to output formats.
+	@echo "Converting resume.md to output formats..."
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/output/resume.html /data/resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/output/resume.pdf /data/resume.md -V geometry:margin=1in -V fontsize=12pt
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/output/resume.txt -f markdown -t plain /data/resume.md

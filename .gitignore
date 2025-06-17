@@ -1,2 +1,2 @@
-resume.html
-resume.pdf
+output/*
+!output/.gitkeep
