@@ -1,0 +1,13 @@
+body {
+	font-family: sans-serif;
+	max-width: 700px;
+	margin: 2rem auto;
+	line-height: 1.5;
+	color: #222;
+}
+@media print {
+	body {
+		margin: 1in;
+		font-size: 12pt;
+	}
+}
