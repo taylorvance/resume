@@ -6,13 +6,24 @@ TAG := pandoc/latex:3.7.0-ubuntu
 
 .PHONY: setup teardown
 setup: ## Install the docker image.
+	mkdir -p ${PWD}/docs
 	docker pull $(TAG)
 teardown: ## Show how to uninstall the docker image.
-	@echo "To uninstall the docker image, run 'docker rmi $(TAG)'"
+	@echo "To uninstall: docker rmi $(TAG)"
+
+docs/index.html: resume.md resume.css
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/index.html --css=/data/resume.css /data/resume.md
+docs/resume.pdf: resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.pdf -V geometry:margin=0.9in -V fontsize=12pt /data/resume.md
+docs/resume.txt: resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.txt -f markdown -t plain /data/resume.md
 
 .PHONY: start
-start: ## Convert markdown resume to output formats.
-	@echo "Converting resume.md to output formats..."
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/index.html --css=/data/resume.css /data/resume.md
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.pdf -V geometry:margin=0.9in -V fontsize=12pt /data/resume.md
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.txt -f markdown -t plain /data/resume.md
+start: docs/index.html docs/resume.pdf docs/resume.txt ## Generate the resume in HTML, PDF, and plain text formats.
+	@echo "Resume generated successfully in docs/ directory."
+
+.PHONY: deploy
+deploy: start ## Rebuild and push generated resumes to GitHub Pages.
+	git add docs/index.html docs/resume.pdf docs/resume.txt
+	git commit -m "Update resume" || echo "No changes to commit"
+	git push
