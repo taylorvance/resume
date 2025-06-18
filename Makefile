@@ -26,4 +26,4 @@ start: docs/index.html docs/resume.pdf docs/resume.txt ## Generate the resume in
 deploy: start ## Rebuild and push generated resumes to GitHub Pages.
 	git add docs/index.html docs/resume.pdf docs/resume.txt
 	git commit -m "Update resume" || echo "No changes to commit"
-	git push
+	kit push origin main
