@@ -11,19 +11,21 @@ setup: ## Install the docker image.
 teardown: ## Show how to uninstall the docker image.
 	@echo "To uninstall: docker rmi $(TAG)"
 
+OUTPUT_FILENAME := TaylorVance-Resume
+
 docs/index.html: resume.md resume.css
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/index.html --css=/data/resume.css /data/resume.md
-docs/resume.pdf: resume.md
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.pdf -V geometry:margin=0.9in -V fontsize=12pt /data/resume.md
-docs/resume.txt: resume.md
-	docker run --rm -v $(shell pwd):/data $(TAG) -s -o /data/docs/resume.txt -f markdown -t plain /data/resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -o /data/docs/index.html -s --embed-resources --css=/data/resume.css /data/resume.md
+docs/$(OUTPUT_FILENAME).pdf: resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -o /data/docs/$(OUTPUT_FILENAME).pdf -s -V geometry:margin=0.9in -V fontsize=12pt /data/resume.md
+docs/$(OUTPUT_FILENAME).txt: resume.md
+	docker run --rm -v $(shell pwd):/data $(TAG) -o /data/docs/$(OUTPUT_FILENAME).txt -s -f markdown -t plain /data/resume.md
 
 .PHONY: start
-start: docs/index.html docs/resume.pdf docs/resume.txt ## Generate the resume in HTML, PDF, and plain text formats.
+start: docs/index.html docs/$(OUTPUT_FILENAME).pdf docs/$(OUTPUT_FILENAME).txt ## Generate the resume in HTML, PDF, and plain text formats.
 	@echo "Resume generated successfully in docs/ directory."
 
 .PHONY: deploy
 deploy: start ## Rebuild and push generated resumes to GitHub Pages.
-	git add docs/index.html docs/resume.pdf docs/resume.txt
+	git add docs/index.html docs/$(OUTPUT_FILENAME).pdf docs/$(OUTPUT_FILENAME).txt
 	git commit -m "Update resume" || echo "No changes to commit"
 	git push
