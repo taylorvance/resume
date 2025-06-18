@@ -2,7 +2,7 @@
 **https://www.tvprograms.tech**  
 **Austin, TX**
 
-Staff-level full-stack engineer with 12 years of experience owning architecture, development, deployment, and maintenance of high-impact systems. Proven track record of transforming monolithic applications into scalable, cloud-native solutions with a focus on availability, performance, and cost efficiency.
+Staff-level full-stack engineer with 12 years of experience owning architecture, development, deployment, and infrastructure. Proven track record of modernizing legacy systems, eliminating operational overhead, and removing pain points through pragmatic automation and system design.
 
 
 ## Experience
@@ -10,25 +10,36 @@ Staff-level full-stack engineer with 12 years of experience owning architecture,
 ### Senior Software Engineer (Lead/Staff-level scope) — Engage2Excel
 **Oct 2013 – Present**
 
-Sole full-time engineer for multiple mission-critical applications serving thousands of users.
+- Sole full-time engineer responsible for architecture, development, deployment, and maintenance of multiple mission-critical applications.
+- Planned and executed regular version upgrades across the stack (PHP, Node, Composer, MySQL, MongoDB, Angular), ensuring compatibility, security, and long-term maintainability.
+- Informally led technical direction for the recruitment division, often consulted for architectural decisions and infrastructure planning.
+- Contributed to early team effort converting internal applicant tracking system into a client-facing SaaS offering, enabling new revenue streams.
+- Rightsized infrastructure to reduce costs without sacrificing performance.
+- Automated developer workflows and deployment pipelines, reducing deployment time from minutes to seconds.
+- Maintained near-zero downtime through thoughtful design, proactive monitoring, and automated failover.
 
 
 ## Projects
 
 ### **Docker + Serverless** — Infrastructure overhaul
-Migrated a high-maintenance server-based monolith to a containerized, self-healing platform using ECS and Fargate, virtually eliminating operational overhead.  
-Executed the production migration with zero downtime.
+Migrated a high-maintenance server-based monolith to a containerized, auto-scaling, self-healing platform using ECS and Fargate, decreasing compute costs by 25% and virtually eliminating operational overhead.  
+Executed the migration in-place during business hours with zero downtime or maintenance window and no impact to users.
+
+### **AI Code Documentation and Q&A Tool** — AI-powered support assistant
+Built an LLM-based tool that auto-generates natural-language technical documentation for arbitrary codebases and enables semantic search via vector embeddings.  
+Users can ask questions about the application (e.g. "How does this feature work?" or "Why did X happen when I did Y?") and get context-rich answers.
 
 ### **The Bridge** — Data sync layer for application migration
-Designed and implemented a resilient two-way data translation and syncing system, ensuring data integrity during the transition from our legacy application to the new cloud-native platform.  
-Utilized AWS SNS and SQS to create a durable, eventual-consistency pipeline for data transformation and synchronization.
+Architected a resilient, eventual-consistency pipeline leveraging AWS SNS and SQS for asynchronous data transformation.  
+Pipeline processed 500k–1M daily events with ~10s latency, enabling seamless parallel use of both legacy and new applications during an extended migration period.
 
 ### **Billable Items** — Line-of-sight to upcoming revenue
 Replaced a fragile, opaque billing process with a robust, reliable, auditable system that provides clear visibility into upcoming revenue.  
 Billable items are updated automatically, as billable actions occur in the system, ensuring accurate and timely billing.
 
-### **RecruitingMachine** — SaaS conversion
-Transformed our internal applicant tracking system into a client-facing SaaS offering, enabling new revenue streams.
+### **Loops** — Internal notification system
+Built a notification/messaging system in our staff application to reduce email clutter.  
+My first solo project, completed while new to the company and tech stack, delivering value within weeks of joining.
 
 
 ## Education
@@ -41,11 +52,15 @@ Transformed our internal applicant tracking system into a client-facing SaaS off
 
 ## Skills
 - Full-stack development
-- AWS (ECS, EC2, ApiGateway, DynamoDB, Lambda, S3, Cloudwatch, SNS, SQS)
+- AWS (ECS, EC2, Autoscaling, API Gateway, Lambda, S3, CloudWatch, SNS, SQS, DynamoDB)
 - Docker, CI/CD pipelines, serverless architecture
 - Bash scripting, Git, DevOps practices
-- Site reliability, performance tuning, fault tolerance
+- LLM integration, vector embeddings, semantic search
+- Cost optimization, site reliability, performance tuning, fault tolerance
+- Observability (CloudWatch dashboards, metric alerts, log analysis)
 - Event-driven, distributed systems design
+- Developer tooling and automation
+- PHP, Python, JS/TS, HTML/CSS, SQL, NoSQL, REST, Angular, React, VueJS, .NET, C#
 
 
 ## Certifications
