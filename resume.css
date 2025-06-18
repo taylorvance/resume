@@ -1,13 +1,18 @@
 body {
-	font-family: sans-serif;
+	font-family: Arial, sans-serif;
 	max-width: 700px;
-	margin: 2rem auto;
+	margin: 1rem auto;
 	line-height: 1.5;
 	color: #222;
 }
+
+h1, h2, h3 { break-after: avoid-page; }
+h3 + p { break-inside: avoid-page; }
+ul { break-before: avoid-page; }
+
 @media print {
 	body {
-		margin: 1in;
+		margin: 0.8in;
 		font-size: 12pt;
 	}
 }
