@@ -23,7 +23,8 @@ Staff-level full-stack engineer with 12 years of experience owning architecture,
 ## Projects
 
 ### **Docker + Serverless** — Infrastructure overhaul
-Migrated a high-maintenance server-based monolith to a containerized, auto-scaling, self-healing platform using ECS and Fargate, keeping costs flat while virtually eliminating operational overhead.  
+Migrated a high-maintenance server-based monolith to a containerized, auto-scaling, self-healing platform using Docker and ECS/Fargate.  
+Reduced compute costs by 10% and virtually eliminated operational overhead.  
 Executed the migration in-place during business hours with zero downtime or maintenance window and no impact to users.
 
 ### **AI Code Documentation and Q&A Tool** — AI-powered support assistant
