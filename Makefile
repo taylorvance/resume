@@ -11,7 +11,7 @@ setup: ## Install the docker image.
 teardown: ## Show how to uninstall the docker image.
 	@echo "To uninstall: docker rmi $(TAG)"
 
-OUTPUT_FILENAME := TaylorVance-Resume
+OUTPUT_FILENAME := Taylor_Vance_Resume
 
 docs/index.html: resume.md resume.css
 	docker run --rm -v $(shell pwd):/data $(TAG) -o /data/docs/index.html -s --embed-resources --css=/data/resume.css /data/resume.md
